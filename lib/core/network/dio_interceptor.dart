@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:location_picker_app/core/constants/app_const.dart';
 
 import 'dart:developer';
-import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
 class DioInterceptor extends Interceptor {
@@ -22,7 +20,9 @@ class DioInterceptor extends Interceptor {
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     if (kDebugMode) {
-      log('[API RESPONSE] => [${response.statusCode}] ${response.requestOptions.uri}');
+      log(
+        '[API RESPONSE] => [${response.statusCode}] ${response.requestOptions.uri}',
+      );
       log('[DATA] => ${response.data}');
       log('──────────────────────────────────────────────────');
     }
@@ -30,9 +30,11 @@ class DioInterceptor extends Interceptor {
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
+  void onError(DioException err, ErrorInterceptorHandler handler) {
     if (kDebugMode) {
-      log('[API ERROR] => [${err.response?.statusCode}] ${err.requestOptions.uri}');
+      log(
+        '[API ERROR] => [${err.response?.statusCode}] ${err.requestOptions.uri}',
+      );
       log('[MESSAGE] => ${err.message}');
       if (err.response?.data != null) {
         log('[ERROR BODY] => ${err.response?.data}');
