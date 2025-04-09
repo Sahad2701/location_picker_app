@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:location_picker_app/feature/country_state_picker/data/repositories_impl/location_repository_impl.dart';
+import '../../feature/country_state_picker/data/datasources/location_remote_data_source.dart';
 import '../../feature/country_state_picker/domain/repositories/location_repository.dart';
 import '../network/dio_client.dart';
 
@@ -13,4 +14,7 @@ Future<void> init() async {
   sl.registerLazySingleton<LocationRepository>(
     () => LocationRepositoryImpl(sl()),
   );
+
+  // Data Source
+  sl.registerLazySingleton(() => LocationRemoteDataSource(sl()));
 }

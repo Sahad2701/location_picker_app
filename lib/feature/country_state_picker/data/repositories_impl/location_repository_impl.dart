@@ -1,54 +1,32 @@
-import 'package:location_picker_app/core/constants/api_endpoints.dart';
-import 'package:location_picker_app/core/network/dio_client.dart';
-import 'package:location_picker_app/core/network/api_result.dart';
+// lib/feature/country_state_picker/data/repositories_impl/location_repository_impl.dart
+
+import 'package:location_picker_app/feature/country_state_picker/data/datasources/location_remote_data_source.dart';
 import 'package:location_picker_app/feature/country_state_picker/data/models/location_item_model.dart';
 import 'package:location_picker_app/feature/country_state_picker/domain/entities/location_item.dart';
 import 'package:location_picker_app/feature/country_state_picker/domain/repositories/location_repository.dart';
 
 class LocationRepositoryImpl implements LocationRepository {
-  final DioClient dioClient;
+  final LocationRemoteDataSource remoteDataSource;
 
-  LocationRepositoryImpl(this.dioClient);
+  LocationRepositoryImpl(this.remoteDataSource);
 
   @override
   Future<List<LocationItem>> getCountries() async {
-    final result = await dioClient.get(ApiEndpoints.countries);
-
-    if (result is ApiSuccess) {
-      try {
-        return (result.data as List)
-            .map((e) => LocationItemModel.fromJson(e).toEntity())
-            .toList()
-            .cast<LocationItem>();
-      } catch (e) {
-        throw Exception('[getCountries] Parse error: $e');
-      }
-    } else if (result is ApiFailure) {
-      throw Exception('[getCountries] ${result.message}');
-    } else {
-      throw Exception('[getCountries] Unexpected error');
+    try {
+      final models = await remoteDataSource.getCountries();
+      return models.map((e) => e.toEntity()).toList();
+    } catch (e) {
+      throw Exception('[Repo][getCountries] $e');
     }
   }
 
   @override
   Future<List<LocationItem>> getStatesByCountryId(int countryId) async {
-    final result = await dioClient.get(
-      ApiEndpoints.statesByCountryId(countryId),
-    );
-
-    if (result is ApiSuccess) {
-      try {
-        return (result.data as List)
-            .map((e) => LocationItemModel.fromJson(e).toEntity())
-            .toList()
-            .cast<LocationItem>();
-      } catch (e) {
-        throw Exception('[getStatesByCountryId] Parse error: $e');
-      }
-    } else if (result is ApiFailure) {
-      throw Exception('[getStatesByCountryId] ${result.message}');
-    } else {
-      throw Exception('[getStatesByCountryId] Unexpected error');
+    try {
+      final models = await remoteDataSource.getStatesByCountryId(countryId);
+      return models.map((e) => e.toEntity()).toList();
+    } catch (e) {
+      throw Exception('[Repo][getStatesByCountryId] $e');
     }
   }
 }
