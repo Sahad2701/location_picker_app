@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:location_picker_app/core/constants/app_const.dart';
 
+import 'core/di/injector.dart';
 import 'core/theme/app_theme.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await init();
   runApp(const MyApp());
 }
 
