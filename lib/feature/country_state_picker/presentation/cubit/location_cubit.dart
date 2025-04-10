@@ -32,7 +32,7 @@ class LocationCubit extends Cubit<LocationState> {
             : CountriesLoaded(_countries),
       );
     } catch (error) {
-      emit(LocationError("Failed to load countries: $error"));
+      emit(LocationError('Failed to load countries: $error'));
     }
   }
 
@@ -42,7 +42,7 @@ class LocationCubit extends Cubit<LocationState> {
       _states = await _locationRepository.getStatesByCountryId(countryId);
       emit(StatesLoaded(_states, _countries));
     } catch (error) {
-      emit(LocationError("Failed to load states: $error"));
+      emit(LocationError('Failed to load states: $error'));
     }
   }
 

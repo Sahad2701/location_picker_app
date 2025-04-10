@@ -53,8 +53,8 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
                   ),
                   const SizedBox(height: 24),
                   if (state is CountriesLoaded)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                    const Padding(
+                      padding:  EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
                         AppConst.pleaseSelectCountry,
                         style: TextStyle(fontSize: 16),
@@ -96,7 +96,7 @@ class _LocationPickerScreenState extends State<LocationPickerScreen> {
                           ),
                         );
                       }
-                      return Offstage();
+                      return const Offstage();
                     },
                   ),
                 ],
