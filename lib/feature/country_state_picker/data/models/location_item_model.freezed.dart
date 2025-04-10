@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$LocationItemModel {
 
- int get id; String get name;
+ int? get id;@JsonKey(name: 'value') String? get name;
 /// Create a copy of LocationItemModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -49,7 +49,7 @@ abstract mixin class $LocationItemModelCopyWith<$Res>  {
   factory $LocationItemModelCopyWith(LocationItemModel value, $Res Function(LocationItemModel) _then) = _$LocationItemModelCopyWithImpl;
 @useResult
 $Res call({
- int id, String name
+ int? id,@JsonKey(name: 'value') String? name
 });
 
 
@@ -66,11 +66,11 @@ class _$LocationItemModelCopyWithImpl<$Res>
 
 /// Create a copy of LocationItemModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? name = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? name = freezed,}) {
   return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -81,11 +81,11 @@ as String,
 @JsonSerializable()
 
 class _LocationItemModel extends LocationItemModel {
-  const _LocationItemModel({required this.id, required this.name}): super._();
+  const _LocationItemModel({this.id, @JsonKey(name: 'value') this.name}): super._();
   factory _LocationItemModel.fromJson(Map<String, dynamic> json) => _$LocationItemModelFromJson(json);
 
-@override final  int id;
-@override final  String name;
+@override final  int? id;
+@override@JsonKey(name: 'value') final  String? name;
 
 /// Create a copy of LocationItemModel
 /// with the given fields replaced by the non-null parameter values.
@@ -120,7 +120,7 @@ abstract mixin class _$LocationItemModelCopyWith<$Res> implements $LocationItemM
   factory _$LocationItemModelCopyWith(_LocationItemModel value, $Res Function(_LocationItemModel) _then) = __$LocationItemModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String name
+ int? id,@JsonKey(name: 'value') String? name
 });
 
 
@@ -137,11 +137,11 @@ class __$LocationItemModelCopyWithImpl<$Res>
 
 /// Create a copy of LocationItemModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? name = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? name = freezed,}) {
   return _then(_LocationItemModel(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,name: null == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
-as String,
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,name: freezed == name ? _self.name : name // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 

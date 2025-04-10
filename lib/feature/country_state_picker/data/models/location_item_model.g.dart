@@ -8,9 +8,9 @@ part of 'location_item_model.dart';
 
 _LocationItemModel _$LocationItemModelFromJson(Map<String, dynamic> json) =>
     _LocationItemModel(
-      id: (json['id'] as num).toInt(),
-      name: json['name'] as String,
+      id: (json['id'] as num?)?.toInt(),
+      name: json['value'] as String?,
     );
 
 Map<String, dynamic> _$LocationItemModelToJson(_LocationItemModel instance) =>
-    <String, dynamic>{'id': instance.id, 'name': instance.name};
+    <String, dynamic>{'id': instance.id, 'value': instance.name};
