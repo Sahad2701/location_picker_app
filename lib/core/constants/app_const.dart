@@ -16,7 +16,7 @@ class AppConst {
   static const selectState = 'Select State';
   static const pleaseSelectCountry =
       'Please select a country first to enable state selection.';
-  static const String selectedLocationTitle = "Selected Location";
+  static const String selectedLocationTitle = 'Selected Location';
   static const String viewSelectedLocation = 'View Selected Location';
   static const String countryLabel = 'Country';
   static const String stateLabel = 'State';
