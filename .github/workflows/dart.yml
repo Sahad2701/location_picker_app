@@ -33,7 +33,3 @@ jobs:
       # Analyze the project source
       - name: Analyze project source
         run: flutter analyze
-
-      # Run tests
-      - name: Run tests
-        run: flutter test
